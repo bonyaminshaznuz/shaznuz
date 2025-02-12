@@ -13,6 +13,6 @@ class WebsiteAdmin(admin.ModelAdmin):
         return True  
 
 admin.site.register(Website, WebsiteAdmin)
-admin.site.register(HeroInfo,WebsiteAdmin)
+admin.site.register(HeroInfo)
 admin.site.register(Footer)
 admin.site.register(SocialIcon)
