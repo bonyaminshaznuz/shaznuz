@@ -1,0 +1,27 @@
+{% load static %}
+<footer>
+    <div class="footer-top">
+        <h1>{{ footer.title }}</h1>
+        <p>{{ footer.small_talk }}</p>
+        <div class="footer-contact">
+            <a href="{{ footer.hire_me_link }}">Hire Me</a>
+            <a href="{% url 'contact' %}">Contact Me</a>
+        </div>
+    </div>
+    <div class="footer-middle">
+        <div class="footer-middle-left">
+            <div class="footer-dot"></div>
+            <p>Follow Me</p>
+        </div>
+        <div class="footer-middle-right">
+            {% for icon in social_icons %}
+            <a href="{{ icon.icon_link }}">
+                <img src="{{ icon.icon.url }}" alt="Social Icon">
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; {{ footer.copyright_text }}</p>
+    </div>
+</footer>

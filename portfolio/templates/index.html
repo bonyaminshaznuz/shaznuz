@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+{% load static %}
+{% include 'header.html' %}
+
+<main>
+    <div id="home">
+        <div class="hero-top">
+            <div class="hero-top-left">
+                <div class="dev-hero"></div>
+                <h3>{{ hero.title }}</h3>
+            </div>
+            <div class="hero-top-right">
+                <div class="active-hero"></div>
+                <p>{{ hero.get_availability_display }}</p>
+            </div>
+        </div>
+        <div class="hero-main">
+            <div class="hero-main-left">
+                <h1> I'm {{ hero.full_name }}</h1>
+                <p>{{ hero.short_intro }} <span class="highlight">{{ hero.company_name }}</span>.</p>
+                <div class="button-hero">
+                    <a href="{{ hero.hireme_link }}" class="btn">Hire Me</a>
+                    <a href="{{ hero.download_cv_button }}" class="btn btn-alt">Download CV</a>
+                </div>
+            </div>
+            <div class="hero-main-right">
+                {% if website.profile_picture %}
+                <img src="{{ website.profile_picture.url }}" alt="Profile Picture" width="150">
+                {% else %}
+                <p>No profile picture available.</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="hero-bottom">
+            <p>{{ hero.long_biography }}</p>
+        </div>
+    </div>
+
+    <div id="about">
+        <div class="education-top">
+            <div class="education-top-left">
+                <div class="dev-edu"></div>
+                <h3>Education & Trining</h3>
+            </div>
+            <div class="education-top-right">
+                <a href=""><span>View more</span> <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+        <div class="education-main">
+            {% for edu in educations %}
+            <div class="education-box">
+                <div class="education-main-top-left">
+                    <div class="main-edu"></div>
+                    <h4>{{ edu.training_type }}</h4>
+                </div>
+                <div class="edu-box-main">
+                    <p class="insti">{{ edu.institution_name }}</p>
+                    <p class="subject"><strong>Subject: </strong>{{ edu.subject }}</p>
+                    <p class="gpa"><strong>CGPA:</strong>{{ edu.cgpa|default:"Completed" }}</p>
+                    <p class="pass-year"><strong>Year:</strong> {{ edu.year }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div id="myskill">
+            <div class="myskill-top">
+                <div class="myskill-top-left">
+                    <div class="dev-edu"></div>
+                    <h3>My Skills</h3>
+                </div>
+            </div>
+            <div class="bottom-line"></div>
+            {% for category in skill_categories %}
+            <div class="myskill-top">
+                <div class="myskill-top-left">
+                    <div class="dev-edu"></div>
+                    <h4>{{ category.name }}</h4>
+                </div>
+                <div class="skill-set">
+                    {% for skill in category.skills.all %}
+                    <img src="{{ skill.icon.url }}" alt="">
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div id="project">
+            <div class="myskill-top">
+                <div class="project-top-left">
+                    <div class="dev-edu"></div>
+                    <h3>My Projects</h3>
+                </div>
+            </div>
+            <div class="project-bottom-line"></div>
+            <div class="project-main">
+                {% for project in projects %}
+                <div class="project-card">
+                    <div class="project-top">
+                        <h3>{{ project.get_difficulty_level_display }}</h3>
+                    </div>
+                    <div class="project-middle">
+                        <h3>{{ project.project_type }}</h3>
+                        {% if project.logo %}
+                        <img src="{{ project.logo.url }}" alt="{{ project.name }} Logo" width="100">
+                        {% else %}
+                        No logo available
+                        {% endif %}
+                        <h5>{{ project.get_status_display }}</h5>
+                    </div>
+                    <div class="project-bottom">
+                        <a href="{{ project.project_link }}">View</a>
+                        <h4>{{ project.start_date }}</h4>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</main>
+{% include 'footer.html' %}
+{% endblock %}

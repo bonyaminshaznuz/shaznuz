@@ -1,0 +1,17 @@
+{% load static %}
+<header>
+    <nav>
+        <div class="navbar-left">
+            <a href="#home"><img src="{%static './icon/home.svg' %}" alt=""></a>
+            <a href="#about"><img src="{% static './icon/education.svg' %}" alt=""></a>
+            <a href="#myskill"><img src="{% static './icon/project.svg' %}" alt=""></a>
+            <a href="#project"><img src="{% static './icon/product.svg' %}" alt=""></a>
+        </div>
+        <div class="navbar-right">
+            <a href="{% url 'contact' %}">
+                <img src="{% static './icon/mail4.svg' %}" alt="">
+                <span class="hide-on-mobile">Contact Me</span>
+            </a>
+        </div>
+    </nav>
+</header>
