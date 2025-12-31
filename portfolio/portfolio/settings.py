@@ -27,11 +27,13 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     "shaznuz.com",
+    "www.shaznuz.com",
     "shaznuz.onrender.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://shaznuz.com",
+    "https://www.shaznuz.com",
     "https://shaznuz.onrender.com",
 ]
 
